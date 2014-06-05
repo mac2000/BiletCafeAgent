@@ -55,6 +55,15 @@ class SeatTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(4, $seat->side_upper);
     }
 
+    /**
+     * @expectedException BiletCafe\Tickets\Seat\SeatException
+     */
+    public function testInvalidData()
+    {
+        $this->data['name'] = 'foo';
+        $seat = Seat::createFromTicketsTrain($this->data);
+    }
+
     public function testCalculateTotal()
     {
         $seat = new FirstClassSeat(1, 1, 1, 1);

@@ -16,10 +16,17 @@
     },
     "minimum-stability": "stable",
     "require": {
+        "mac/bit": "x",
         "pimple/pimple": "x",
         "guzzlehttp/guzzle": "x"
     },
     "require-dev": {
         "phpunit/phpunit": "x"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/mac2000/bit"
+        }
+    ]
 }

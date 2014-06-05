@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "f07f771edf4a3e877cd916ddc0c3d2a9",
+    "hash": "5ba8a4ace94d72b8e179c76dfd86ee70",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -122,6 +123,50 @@
                 "stream"
             ],
             "time": "2014-04-03 04:48:24"
+        },
+        {
+            "name": "mac/bit",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mac2000/bit.git",
+                "reference": "b86ab14bd7b80f562fc3179b7faf4e29f6210e1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mac2000/bit/zipball/b86ab14bd7b80f562fc3179b7faf4e29f6210e1a",
+                "reference": "b86ab14bd7b80f562fc3179b7faf4e29f6210e1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mac\\bit\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "mac\\bit\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marchenko Alexandr",
+                    "email": "marchenko.alexandr@gmail.com"
+                }
+            ],
+            "description": "Add bitmask functionality",
+            "support": {
+                "source": "https://github.com/mac2000/bit/tree/1.0.0",
+                "issues": "https://github.com/mac2000/bit/issues"
+            },
+            "time": "2014-06-05 08:03:18"
         },
         {
             "name": "pimple/pimple",
@@ -869,17 +914,9 @@
             "time": "2014-05-16 14:25:18"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "stability-flags": [],
+    "platform": [],
+    "platform-dev": []
 }

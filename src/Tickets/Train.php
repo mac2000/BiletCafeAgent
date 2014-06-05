@@ -8,9 +8,12 @@ use BiletCafe\Tickets\Seat\ReservedSeat;
 use BiletCafe\Tickets\Seat\SecondClassSeat;
 use BiletCafe\Tickets\Seat\ThirdClassSeat;
 use DateTime;
+use mac\bit\BitParam;
 
 class Train
 {
+    use BitParam;
+
     const NONE = 0;
     const FIRST = 1;
     const SECOND = 2;
@@ -69,27 +72,27 @@ class Train
 
         foreach($this->seats as $seat)
         {
-            if((self::FIRST & $classFlags) > 0 && $seat instanceof FirstClassSeat) {
+            if($this->isBitSet(self::FIRST, $classFlags) && $seat instanceof FirstClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if((self::SECOND & $classFlags) > 0 && $seat instanceof SecondClassSeat) {
+            if($this->isBitSet(self::SECOND, $classFlags) && $seat instanceof SecondClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if((self::THIRD & $classFlags) > 0 && $seat instanceof ThirdClassSeat) {
+            if($this->isBitSet(self::THIRD, $classFlags) && $seat instanceof ThirdClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if((self::RESERVED & $classFlags) > 0 && $seat instanceof ReservedSeat) {
+            if($this->isBitSet(self::RESERVED, $classFlags) && $seat instanceof ReservedSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags, $subclass);
             }
 
-            if((self::NON_RESERVED & $classFlags) > 0 && $seat instanceof NonReservedSeat) {
+            if($this->isBitSet(self::NON_RESERVED, $classFlags) && $seat instanceof NonReservedSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if((self::COMFORTABLE & $classFlags) > 0 && $seat instanceof ComfortableSeat) {
+            if($this->isBitSet(self::COMFORTABLE, $classFlags) && $seat instanceof ComfortableSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
         }

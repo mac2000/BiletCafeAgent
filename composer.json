@@ -1,0 +1,25 @@
+{
+    "name": "biletcafe/agent",
+    "description": "BiletCafe.com.ua Agent",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marchenko Alexandr",
+            "email": "marchenko.alexandr@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"BiletCafe\\": "src"}
+    },
+    "autoload-dev": {
+        "psr-4": {"BiletCafe\\Tests\\": "tests"}
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "pimple/pimple": "x",
+        "guzzlehttp/guzzle": "x"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "x"
+    }
+}

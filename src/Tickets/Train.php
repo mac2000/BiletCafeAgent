@@ -31,12 +31,12 @@ class Train
     /**
      * @var Station
      */
-    public $from;
+    public $stationFrom;
 
     /**
      * @var Station
      */
-    public $to;
+    public $stationTo;
 
     /**
      * @var DateTime
@@ -53,12 +53,18 @@ class Train
      */
     public $seats;
 
-    public function __construct($number, Station $from, Station $to, DateTime $departure, DateTime $arrival, array $seats)
-    {
+    public function __construct(
+        $number,
+        Station $stationFrom,
+        Station $stationTo,
+        DateTime $departure,
+        DateTime $arrival,
+        array $seats
+    ) {
         $this->number = $number;
 
-        $this->to = $to;
-        $this->from = $from;
+        $this->stationTo = $stationTo;
+        $this->stationFrom = $stationFrom;
 
         $this->departure = $departure;
         $this->arrival = $arrival;
@@ -70,29 +76,28 @@ class Train
     {
         $sum = 0;
 
-        foreach($this->seats as $seat)
-        {
-            if($this->isBitSet(self::FIRST, $classFlags) && $seat instanceof FirstClassSeat) {
+        foreach ($this->seats as $seat) {
+            if ($this->isBitSet(self::FIRST, $classFlags) && $seat instanceof FirstClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::SECOND, $classFlags) && $seat instanceof SecondClassSeat) {
+            if ($this->isBitSet(self::SECOND, $classFlags) && $seat instanceof SecondClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::THIRD, $classFlags) && $seat instanceof ThirdClassSeat) {
+            if ($this->isBitSet(self::THIRD, $classFlags) && $seat instanceof ThirdClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::RESERVED, $classFlags) && $seat instanceof ReservedSeat) {
+            if ($this->isBitSet(self::RESERVED, $classFlags) && $seat instanceof ReservedSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags, $subclass);
             }
 
-            if($this->isBitSet(self::NON_RESERVED, $classFlags) && $seat instanceof NonReservedSeat) {
+            if ($this->isBitSet(self::NON_RESERVED, $classFlags) && $seat instanceof NonReservedSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::COMFORTABLE, $classFlags) && $seat instanceof ComfortableSeat) {
+            if ($this->isBitSet(self::COMFORTABLE, $classFlags) && $seat instanceof ComfortableSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
         }
@@ -107,9 +112,10 @@ class Train
 
     public function numberInArray(array $numbers)
     {
-        foreach($numbers as $number)
-        {
-            if($this->numberMatch($number)) return true;
+        foreach ($numbers as $number) {
+            if ($this->numberMatch($number)) {
+                return true;
+            }
         }
         return false;
     }

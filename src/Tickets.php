@@ -39,41 +39,50 @@ class Tickets
 
         $response = $this->call('/rail/search.json', array_filter($query));
 
-        return array_map(function ($station) {
-            return new Station($station['code'], $station['name']);
-        }, $response['stations']);
+        return array_map(
+            function ($station) {
+                return new Station($station['code'], $station['name']);
+            },
+            $response['stations']
+        );
     }
 
     /**
-     * @param string $from station code
-     * @param string $to station code
+     * @param string $stationFrom station code
+     * @param string $stationTo station code
      * @param DateTime $date departure date d-m-Y
      * @param string $lang to use (ru, en, uk)
      * @return array
      */
-    public function search($from, $to, DateTime $date, $lang = 'ru')
+    public function search($stationFrom, $stationTo, DateTime $date, $lang = 'ru')
     {
         $query = array(
-            'from' => $from,
-            'to' => $to,
+            'from' => $stationFrom,
+            'to' => $stationTo,
             'date' => $date->format('d-m-Y'),
             'lang' => $lang
         );
 
         $response = $this->call('/rail/search.json', array_filter($query));
 
-        return array_map(function ($train) {
-            return new Train(
-                $train['number'],
-                new Station($train['passenger_departure_code'], $train['passenger_departure_name']),
-                new Station($train['passenger_arrival_code'], $train['passenger_arrival_name']),
-                DateTime::createFromFormat('d-m-Y H:i', $train['departure_date'] . ' ' . $train['departure_time']),
-                DateTime::createFromFormat('d-m-Y H:i', $train['arrival_date'] . ' ' . $train['arrival_time']),
-                array_map(function($seat){
-                    return Seat::createFromTicketsTrain($seat);
-                }, $train['classes'])
-            );
-        }, $response['trains']);
+        return array_map(
+            function ($train) {
+                return new Train(
+                    $train['number'],
+                    new Station($train['passenger_departure_code'], $train['passenger_departure_name']),
+                    new Station($train['passenger_arrival_code'], $train['passenger_arrival_name']),
+                    DateTime::createFromFormat('d-m-Y H:i', $train['departure_date'] . ' ' . $train['departure_time']),
+                    DateTime::createFromFormat('d-m-Y H:i', $train['arrival_date'] . ' ' . $train['arrival_time']),
+                    array_map(
+                        function ($seat) {
+                            return Seat::createFromTicketsTrain($seat);
+                        },
+                        $train['classes']
+                    )
+                );
+            },
+            $response['trains']
+        );
     }
 
     /**
@@ -84,12 +93,18 @@ class Tickets
      */
     protected function call($url, array $query = array())
     {
-        $response = $this->client->get($url, array(
-            'query' => $query
-        ))->json();
+        $response = $this->client->get(
+            $url,
+            array(
+                'query' => $query
+            )
+        )->json();
 
         if ($response['response']['result']['code'] != '0') {
-            throw new TicketsException($response['response']['result']['description'], $response['response']['result']['code']);
+            throw new TicketsException(
+                $response['response']['result']['description'],
+                $response['response']['result']['code']
+            );
         }
 
         return $response['response'];

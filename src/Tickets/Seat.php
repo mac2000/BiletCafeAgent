@@ -112,11 +112,11 @@ abstract class Seat
         }
 
         if($this->isFlagSet(self::SIDE_LOWER, $flags)) {
-            $sum += $this->side_lower;
+            $sum += $this->sideLower;
         }
 
         if($this->isFlagSet(self::SIDE_UPPER, $flags)) {
-            $sum += $this->side_upper;
+            $sum += $this->sideUpper;
         }
 
         return $sum;

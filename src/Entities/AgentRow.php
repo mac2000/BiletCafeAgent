@@ -49,5 +49,4 @@ class AgentRow
 
     public $push_sent;
     public $push_sent_result;
-
 }

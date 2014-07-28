@@ -1,6 +1,8 @@
 <?php
 namespace BiletCafe\REST;
 
+use BiletCafe\Entities\AgentModel;
+
 interface RestInterface
 {
     public function create(AgentModel $agent);

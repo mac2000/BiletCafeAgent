@@ -5,6 +5,8 @@ class AgentRow
 {
     public $id;
 
+    public $phone_id;
+
     public $active;
 
     public $from;

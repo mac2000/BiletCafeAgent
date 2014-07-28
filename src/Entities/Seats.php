@@ -33,8 +33,6 @@ trait Seats
         $this->toggleFlag($class, $this->seats);
     }
 
-
-
     public function isLowerSeatsIncluded()
     {
         return $this->isSeatIncluded(Seat::LOWER);

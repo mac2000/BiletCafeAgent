@@ -19,12 +19,12 @@ class AgentModel
     /**
      * @var string
      */
-    public $from;
+    public $stationFrom;
 
     /**
      * @var string
      */
-    public $to;
+    public $stationTo;
 
     /**
      * @var DateTime
@@ -38,8 +38,4 @@ class AgentModel
 
     public $concreteTrain;
     public $exceptTrains;
-
-
-
-
 }

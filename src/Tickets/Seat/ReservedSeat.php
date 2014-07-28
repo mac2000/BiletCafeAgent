@@ -7,9 +7,9 @@ class ReservedSeat extends Seat
 {
     protected $subclass;
 
-    public function __construct($lower = 0, $upper = 0, $side_lower = 0, $side_upper = 0, $subclass = null)
+    public function __construct($lower = 0, $upper = 0, $sideLower = 0, $sideUpper = 0, $subclass = null)
     {
-        parent::__construct($lower, $upper, $side_lower, $side_upper);
+        parent::__construct($lower, $upper, $sideLower, $sideUpper);
         $this->subclass = $subclass;
     }
 

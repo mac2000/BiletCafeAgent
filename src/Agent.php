@@ -29,10 +29,13 @@ class Agent
             return $trains;
         }
 
-        return array_filter($trains, function ($train) use ($concreteTrain) {
-            /** @var Train $train */
-            return $train->numberMatch($concreteTrain);
-        });
+        return array_filter(
+            $trains,
+            function ($train) use ($concreteTrain) {
+                /** @var Train $train */
+                return $train->numberMatch($concreteTrain);
+            }
+        );
     }
 
     protected function filterExceptTrains(array $trains, array $exceptTrains = array())
@@ -41,18 +44,24 @@ class Agent
             return $trains;
         }
 
-        return array_filter($trains, function ($train) use ($exceptTrains) {
-            /** @var Train $train */
-            return !$train->numberInArray($exceptTrains);
-        });
+        return array_filter(
+            $trains,
+            function ($train) use ($exceptTrains) {
+                /** @var Train $train */
+                return !$train->numberInArray($exceptTrains);
+            }
+        );
     }
 
     protected function filterByDepartureDate(array $trains, DateTime $date)
     {
-        return array_filter($trains, function ($train) use ($date) {
-            /** @var Train $train */
-            return $train->isDepartureAfter($date);
-        });
+        return array_filter(
+            $trains,
+            function ($train) use ($date) {
+                /** @var Train $train */
+                return $train->isDepartureAfter($date);
+            }
+        );
     }
 
     protected function filterByArriveDate(array $trains, DateTime $date = null)
@@ -61,18 +70,21 @@ class Agent
             return $trains;
         }
 
-        return array_filter($trains, function ($train) use ($date) {
-            /** @var Train $train */
-            return $train->isArriveBefore($date);
-        });
+        return array_filter(
+            $trains,
+            function ($train) use ($date) {
+                /** @var Train $train */
+                return $train->isArriveBefore($date);
+            }
+        );
     }
 
-    protected function search($from, $to, DateTime $date, $lang = 'ru')
+    protected function search($stationFrom, $stationTo, DateTime $date, $lang = 'ru')
     {
-        $this->trains = $this->tickets->search($from, $to, $date, $lang);
+        $this->trains = $this->tickets->search($stationFrom, $stationTo, $date, $lang);
     }
 
-    protected function filter(DateTime $date, DateTime $date_by = null, $concreteTrain = null, $exceptTrains = array())
+    protected function filter(DateTime $date, DateTime $dateBy = null, $concreteTrain = null, $exceptTrains = array())
     {
         // skip trains by number
         $this->trains = $this->filterExceptTrains($this->trains, $exceptTrains);
@@ -80,7 +92,7 @@ class Agent
 
         // skip trains by dates
         $this->trains = $this->filterByDepartureDate($this->trains, $date);
-        $this->trains = $this->filterByArriveDate($this->trains, $date_by);
+        $this->trains = $this->filterByArriveDate($this->trains, $dateBy);
     }
 
     protected function calculateTotalSeats($classFlags = Train::ALL, $seatFlags = Seat::ALL, $subclass = null)
@@ -95,21 +107,20 @@ class Agent
     }
 
     public function check(
-        $from,
-        $to,
+        $stationFrom,
+        $stationTo,
         DateTime $date,
-        DateTime $date_by = null,
+        DateTime $dateBy = null,
         $concreteTrain = null,
         $exceptTrains = array(),
         $classFlags = Train::ALL,
         $seatFlags = Seat::ALL,
         $subclass = null,
         $lang = 'ru'
-    )
-    {
-        $this->search($from, $to, $date, $lang);
+    ) {
+        $this->search($stationFrom, $stationTo, $date, $lang);
 
-        $this->filter($date, $date_by, $concreteTrain, $exceptTrains);
+        $this->filter($date, $dateBy, $concreteTrain, $exceptTrains);
 
         return $this->calculateTotalSeats($classFlags, $seatFlags, $subclass);
     }

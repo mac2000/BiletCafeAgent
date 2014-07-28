@@ -51,8 +51,8 @@ class SeatTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, $seat->lower);
         $this->assertEquals(2, $seat->upper);
-        $this->assertEquals(3, $seat->side_lower);
-        $this->assertEquals(4, $seat->side_upper);
+        $this->assertEquals(3, $seat->sideLower);
+        $this->assertEquals(4, $seat->sideUpper);
     }
 
     /**
@@ -61,7 +61,7 @@ class SeatTest extends PHPUnit_Framework_TestCase
     public function testInvalidData()
     {
         $this->data['name'] = 'foo';
-        $seat = Seat::createFromTicketsTrain($this->data);
+        Seat::createFromTicketsTrain($this->data);
     }
 
     public function testCalculateTotal()

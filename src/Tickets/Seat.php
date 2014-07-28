@@ -34,35 +34,66 @@ abstract class Seat
     /**
      * @var int
      */
-    public $side_upper;
+    public $sideUpper;
 
     /**
      * @var int
      */
-    public $side_lower;
+    public $sideLower;
 
-    public function __construct($lower = 0, $upper = 0, $side_lower = 0, $side_upper = 0)
+    public function __construct($lower = 0, $upper = 0, $sideLower = 0, $sideUpper = 0)
     {
         $this->lower = $lower;
         $this->upper = $upper;
-        $this->side_lower = $side_lower;
-        $this->side_upper = $side_upper;
+        $this->sideLower = $sideLower;
+        $this->sideUpper = $sideUpper;
     }
 
     public static function createFromTicketsTrain(array $data)
     {
         if ($data['name'] === 'first') {
-            return new FirstClassSeat($data['seats']['lower'], $data['seats']['upper'], $data['seats']['side_lower'], $data['seats']['side_upper']);
+            return new FirstClassSeat(
+                $data['seats']['lower'],
+                $data['seats']['upper'],
+                $data['seats']['side_lower'],
+                $data['seats']['side_upper']
+                );
         } elseif ($data['name'] === 'second') {
-            return new SecondClassSeat($data['seats']['lower'], $data['seats']['upper'], $data['seats']['side_lower'], $data['seats']['side_upper']);
+            return new SecondClassSeat(
+                $data['seats']['lower'],
+                $data['seats']['upper'],
+                $data['seats']['side_lower'],
+                $data['seats']['side_upper']
+                );
         } elseif ($data['name'] === 'third') {
-            return new ThirdClassSeat($data['seats']['lower'], $data['seats']['upper'], $data['seats']['side_lower'], $data['seats']['side_upper']);
+            return new ThirdClassSeat(
+                $data['seats']['lower'],
+                $data['seats']['upper'],
+                $data['seats']['side_lower'],
+                $data['seats']['side_upper']
+                );
         } elseif ($data['name'] === 'reserved') {
-            return new ReservedSeat($data['seats']['lower'], $data['seats']['upper'], $data['seats']['side_lower'], $data['seats']['side_upper'], $data['subclass']);
+            return new ReservedSeat(
+                $data['seats']['lower'],
+                $data['seats']['upper'],
+                $data['seats']['side_lower'],
+                $data['seats']['side_upper'],
+                $data['subclass']
+                );
         } elseif ($data['name'] === 'non_reserved') {
-            return new NonReservedSeat($data['seats']['lower'], $data['seats']['upper'], $data['seats']['side_lower'], $data['seats']['side_upper']);
+            return new NonReservedSeat(
+                $data['seats']['lower'],
+                $data['seats']['upper'],
+                $data['seats']['side_lower'],
+                $data['seats']['side_upper']
+                );
         } elseif ($data['name'] === 'comfortable') {
-            return new ComfortableSeat($data['seats']['lower'], $data['seats']['upper'], $data['seats']['side_lower'], $data['seats']['side_upper']);
+            return new ComfortableSeat(
+                $data['seats']['lower'],
+                $data['seats']['upper'],
+                $data['seats']['side_lower'],
+                $data['seats']['side_upper']
+                );
         }
 
         throw new SeatException('Invalid seat class data given');

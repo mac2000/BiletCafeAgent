@@ -31,12 +31,12 @@ class Train
     /**
      * @var Station
      */
-    public $from;
+    public $stationFrom;
 
     /**
      * @var Station
      */
-    public $to;
+    public $stationTo;
 
     /**
      * @var DateTime
@@ -53,12 +53,18 @@ class Train
      */
     public $seats;
 
-    public function __construct($number, Station $from, Station $to, DateTime $departure, DateTime $arrival, array $seats)
-    {
+    public function __construct(
+        $number,
+        Station $stationFrom,
+        Station $stationTo,
+        DateTime $departure,
+        DateTime $arrival,
+        array $seats
+        ) {
         $this->number = $number;
 
-        $this->to = $to;
-        $this->from = $from;
+        $this->stationTo = $stationTo;
+        $this->stationFrom = $stationFrom;
 
         $this->departure = $departure;
         $this->arrival = $arrival;
@@ -107,9 +113,10 @@ class Train
 
     public function numberInArray(array $numbers)
     {
-        foreach($numbers as $number)
-        {
-            if($this->numberMatch($number)) return true;
+        foreach ($numbers as $number) {
+            if ($this->numberMatch($number)) {
+                return true;
+            }
         }
         return false;
     }

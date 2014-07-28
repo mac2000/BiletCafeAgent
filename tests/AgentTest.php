@@ -137,16 +137,54 @@ class AgentTest extends PHPUnit_Framework_TestCase
 
     public function testCalculateTotalSeats()
     {
-        $seats = $this->agent->check('1', '2', new DateTime('-2 day'), new DateTime('+2 day'), null, array(), Train::ALL, Seat::ALL);
+        $seats = $this->agent->check(
+            '1',
+            '2',
+            new DateTime('-2 day'),
+            new DateTime('+2 day'),
+            null,
+            array(),
+            Train::ALL,
+            Seat::ALL
+        );
         $this->assertEquals(112, $seats);
 
-        $seats = $this->agent->check('1', '2', new DateTime('+1 hour'), new DateTime('+2 day'), null, array(), Train::ALL, Seat::ALL);
+        $seats = $this->agent->check(
+            '1',
+            '2',
+            new DateTime('+1 hour'),
+            new DateTime('+2 day'),
+            null,
+            array(),
+            Train::ALL,
+            Seat::ALL
+        );
         $this->assertEquals(28, $seats);
 
-        $seats = $this->agent->check('1', '2', new DateTime('+1 hour'), new DateTime('+2 day'), null, array(), Train::RESERVED, Seat::ALL, 1);
+        $seats = $this->agent->check(
+            '1',
+            '2',
+            new DateTime('+1 hour'),
+            new DateTime('+2 day'),
+            null,
+            array(),
+            Train::RESERVED,
+            Seat::ALL,
+            1
+        );
         $this->assertEquals(4, $seats);
 
-        $seats = $this->agent->check('1', '2', new DateTime('+1 hour'), new DateTime('+2 day'), null, array(), Train::FIRST | Train::SECOND, Seat::SIDE_UPPER | Seat::UPPER, 1);
+        $seats = $this->agent->check(
+            '1',
+            '2',
+            new DateTime('+1 hour'),
+            new DateTime('+2 day'),
+            null,
+            array(),
+            Train::FIRST | Train::SECOND,
+            Seat::SIDE_UPPER | Seat::UPPER,
+            1
+        );
         $this->assertEquals(4, $seats);
     }
 }

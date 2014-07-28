@@ -8,11 +8,11 @@ use BiletCafe\Tickets\Seat\ReservedSeat;
 use BiletCafe\Tickets\Seat\SeatException;
 use BiletCafe\Tickets\Seat\SecondClassSeat;
 use BiletCafe\Tickets\Seat\ThirdClassSeat;
-use mac\bit\BitParam;
+use mac\bit\Bit;
 
 abstract class Seat
 {
-    use BitParam;
+    use Bit;
 
     const NONE = 0;
     const LOWER = 1;
@@ -72,19 +72,19 @@ abstract class Seat
     {
         $sum = 0;
 
-        if($this->isBitSet(self::LOWER, $flags)) {
+        if($this->isFlagSet(self::LOWER, $flags)) {
             $sum += $this->lower;
         }
 
-        if($this->isBitSet(self::UPPER, $flags)) {
+        if($this->isFlagSet(self::UPPER, $flags)) {
             $sum += $this->upper;
         }
 
-        if($this->isBitSet(self::SIDE_LOWER, $flags)) {
+        if($this->isFlagSet(self::SIDE_LOWER, $flags)) {
             $sum += $this->side_lower;
         }
 
-        if($this->isBitSet(self::SIDE_UPPER, $flags)) {
+        if($this->isFlagSet(self::SIDE_UPPER, $flags)) {
             $sum += $this->side_upper;
         }
 

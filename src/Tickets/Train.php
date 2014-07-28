@@ -8,11 +8,11 @@ use BiletCafe\Tickets\Seat\ReservedSeat;
 use BiletCafe\Tickets\Seat\SecondClassSeat;
 use BiletCafe\Tickets\Seat\ThirdClassSeat;
 use DateTime;
-use mac\bit\BitParam;
+use mac\bit\Bit;
 
 class Train
 {
-    use BitParam;
+    use Bit;
 
     const NONE = 0;
     const FIRST = 1;
@@ -72,27 +72,27 @@ class Train
 
         foreach($this->seats as $seat)
         {
-            if($this->isBitSet(self::FIRST, $classFlags) && $seat instanceof FirstClassSeat) {
+            if($this->isFlagSet(self::FIRST, $classFlags) && $seat instanceof FirstClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::SECOND, $classFlags) && $seat instanceof SecondClassSeat) {
+            if($this->isFlagSet(self::SECOND, $classFlags) && $seat instanceof SecondClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::THIRD, $classFlags) && $seat instanceof ThirdClassSeat) {
+            if($this->isFlagSet(self::THIRD, $classFlags) && $seat instanceof ThirdClassSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::RESERVED, $classFlags) && $seat instanceof ReservedSeat) {
+            if($this->isFlagSet(self::RESERVED, $classFlags) && $seat instanceof ReservedSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags, $subclass);
             }
 
-            if($this->isBitSet(self::NON_RESERVED, $classFlags) && $seat instanceof NonReservedSeat) {
+            if($this->isFlagSet(self::NON_RESERVED, $classFlags) && $seat instanceof NonReservedSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
 
-            if($this->isBitSet(self::COMFORTABLE, $classFlags) && $seat instanceof ComfortableSeat) {
+            if($this->isFlagSet(self::COMFORTABLE, $classFlags) && $seat instanceof ComfortableSeat) {
                 $sum += $seat->calculateTotalSeats($seatFlags);
             }
         }

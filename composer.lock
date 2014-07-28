@@ -126,16 +126,16 @@
         },
         {
             "name": "mac/bit",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mac2000/bit.git",
-                "reference": "b86ab14bd7b80f562fc3179b7faf4e29f6210e1a"
+                "reference": "dc57132c757ca77cb1e41b60c4a7afb0cf967815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mac2000/bit/zipball/b86ab14bd7b80f562fc3179b7faf4e29f6210e1a",
-                "reference": "b86ab14bd7b80f562fc3179b7faf4e29f6210e1a",
+                "url": "https://api.github.com/repos/mac2000/bit/zipball/dc57132c757ca77cb1e41b60c4a7afb0cf967815",
+                "reference": "dc57132c757ca77cb1e41b60c4a7afb0cf967815",
                 "shasum": ""
             },
             "require": {
@@ -163,10 +163,10 @@
             ],
             "description": "Add bitmask functionality",
             "support": {
-                "source": "https://github.com/mac2000/bit/tree/1.0.0",
+                "source": "https://github.com/mac2000/bit/tree/1.1.0",
                 "issues": "https://github.com/mac2000/bit/issues"
             },
-            "time": "2014-06-05 08:03:18"
+            "time": "2014-06-05 13:28:54"
         },
         {
             "name": "pimple/pimple",
